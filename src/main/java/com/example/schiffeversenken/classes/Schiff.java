@@ -12,7 +12,7 @@ public abstract class Schiff {
     private static ArrayList<Schiff> schiffsListe = new ArrayList<>();
     private static ArrayList<String> besetzteFelder = new ArrayList<>();
 
-    private static ArrayList<String> spieldfeld = new ArrayList<>();
+    public static ArrayList<String> spieldfeld = new ArrayList<>();
 
     protected Schiff(int felder, String name){
         if (spieldfeld.size() == 0){
@@ -21,8 +21,8 @@ public abstract class Schiff {
                     spieldfeld.add(Character.toString(i)+j);
                 }
             }
+            System.out.println(spieldfeld.size());
         }
-        System.out.println(spieldfeld);
         this.name = name;
         this.felder = felder;
         schiffsListe.add(this);
@@ -44,48 +44,90 @@ public abstract class Schiff {
 
         }while (besetzteFelder.contains(""+starth+startv));*/
 
+        int ausrichtung = r.nextInt(1,11);
         boolean run = true;
-        do {
-            startv = r.nextInt(65, (74-this.getFelder()));
-            starth = r.nextInt(1, this.getFelder()+1);
-            if (startv%2==0){
+/*        if (ausrichtung%2==0){
+            do {
+                    startv = r.nextInt(65, 76);
+                    starth = r.nextInt(1, this.getFelder()+1);
+
+                    for (int i = 0; i< this.getFelder(); i++){
+                        String feld = Character.toString(startv) + (starth+i);
+                        if (!spieldfeld.contains(feld)){
+                            continue;
+                        }
+                        run = false;
+                    }
+            } while (run);
+        } else {
+            do {
+                startv = r.nextInt(65, 76-this.getFelder());
+                starth = r.nextInt(1, 11);
                 for (int i = 0; i< this.getFelder(); i++){
-                    String feld = Character.toString(startv) + (starth+i);
-                    if (spieldfeld.contains(feld)){
+                    String feld = Character.toString(startv + i) + starth;
+                    if (!spieldfeld.contains(feld)){
                         continue;
                     }
                     run = false;
                 }
-            } else{
-                for (int i = 0; i< this.getFelder(); i++){
+            }while (run);
+        }*/
+        do {
+            if (ausrichtung%2==0){
+                startv = r.nextInt(65, 76);
+                starth = r.nextInt(1, this.getFelder()+1);
+
+                for (int i = 0; i< this.getFelder()+1; i++){
+                    String feld = Character.toString(startv) + (starth+i);
+                    if (!spieldfeld.contains(feld)){
+                        //ausrichtung = r.nextInt(1,11);
+                        break;
+                    }
+                    run = false;
+                }
+            } else {
+                startv = r.nextInt(65, 76-this.getFelder());
+                starth = r.nextInt(1, 11);
+                for (int i = 0; i< this.getFelder()+1; i++){
                     String feld = Character.toString(startv + i) + starth;
-                    if (spieldfeld.contains(feld)){
-                        continue;
+                    if (!spieldfeld.contains(feld)){
+                        //ausrichtung = r.nextInt(1,11);
+                        break;
                     }
                     run = false;
                 }
             }
         } while (run);
 
-        if (startv%2 == 0){
-            System.out.println("Start Horizontal: " +starth);
+        if (ausrichtung%2 == 0){
+            System.out.println(this.getName()+"Start Horizontal: " +starth);
             for (int i = 0; i < this.getFelder(); i++){
                 String feld = Character.toString(startv) + (starth+i);
-                al.add(feld);
-                if (besetzteFelder.contains(feld)){
-                    System.out.println("Logikfehler");
+
+                if (spieldfeld.contains(feld)){
+                    al.add(feld);
+                    System.out.println(feld + " Entfernt!");
+                    spieldfeld.remove(feld);
+                } else {
+                    System.err.println("Logikfehler horizontal: "+feld);
                 }
-                spieldfeld.remove(feld);
+
+
             }
         } else {
-            System.out.println("Start Vertikal: " +startv);
+            System.out.println(this.getName()+"Start Vertikal: " +startv);
             for (int i = 0; i < this.getFelder(); i++){
-                String Feld = Character.toString(startv +i) + starth;
-                al.add(Feld);
-                if (besetzteFelder.contains(Feld)){
-                    System.out.println("Logikfehler");
+                String feld = Character.toString(startv +i) + starth;
+
+                if (spieldfeld.contains(feld)){
+                    al.add(feld);
+                    System.out.println(feld + " Entfernt!");
+                    spieldfeld.remove(feld);
+                } else {
+                    System.err.println("Logikfehler Vertikal: "+feld);
                 }
-                spieldfeld.remove(felder);
+
+
             }
         }
         hm.put(this.getName(), al);

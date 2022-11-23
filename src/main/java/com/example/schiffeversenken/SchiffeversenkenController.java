@@ -1,9 +1,6 @@
 package com.example.schiffeversenken;
 
-import com.example.schiffeversenken.classes.Kreuzer;
-import com.example.schiffeversenken.classes.Schlachtschiff;
-import com.example.schiffeversenken.classes.Uboot;
-import com.example.schiffeversenken.classes.Zerstörer;
+import com.example.schiffeversenken.classes.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -64,7 +61,13 @@ public class SchiffeversenkenController {
         schiffeAufSpielfeldMap.putAll(new Uboot().setzeSchiff());
         schiffeAufSpielfeldMap.putAll(new Uboot().setzeSchiff());
         schiffeAufSpielfeldMap.putAll(new Uboot().setzeSchiff());
-        System.out.println(schiffeAufSpielfeldMap);
+
+        System.out.println();
+        schiffeAufSpielfeldMap.forEach((k,v)->{
+            System.out.println(k+": "+v);
+        });
+
+        System.out.println(Schiff.spieldfeld.size());
 
 
 
