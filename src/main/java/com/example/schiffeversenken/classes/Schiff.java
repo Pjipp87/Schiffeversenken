@@ -39,11 +39,11 @@ public abstract class Schiff {
         int startv;
         int starth;
 
-        int ausrichtung = r.nextInt(1,11);
+        boolean ausrichtung = r.nextBoolean();
         boolean run = true;
 
         do {
-            if (ausrichtung%2==0){
+            if (ausrichtung){
                 startv = r.nextInt(65, 76);
                 starth = r.nextInt(1, this.getFelder()+1);
                 ArrayList<String> tempList = new ArrayList<>();
@@ -59,7 +59,7 @@ public abstract class Schiff {
                     run = false;
 
                 } else {
-                    ausrichtung = r.nextInt(11);
+
                     tempList.clear();
                 }
             } else {
@@ -67,17 +67,18 @@ public abstract class Schiff {
                 startv = r.nextInt(65, 76-this.getFelder());
                 starth = r.nextInt(1, 11);
                 for (int i = 0; i< this.getFelder(); i++){
-                    String feld = Character.toString(startv) + (starth+i);
+                    String feld = Character.toString(startv+i) + (starth);
                     tempList.add(feld);
                 }
                 if (spieldfeld.containsAll(tempList)){
                     hm.put(this.getName(), tempList);
+                    System.out.println(tempList);
                     spieldfeld.removeAll(tempList);
                     System.out.println(tempList + " Entfernt!");
                     run = false;
 
                 } else {
-                    ausrichtung = r.nextInt(11);
+
                     tempList.clear();
                 }
             }
