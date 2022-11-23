@@ -48,16 +48,6 @@ public class SchiffeversenkenController {
                     playButton.setStyle("-fx-text-fill: lightblue");
                     playButton.setPrefWidth(gridPane.getPrefWidth());
                     playButton.setPrefHeight(gridPane.getPrefHeight());
-                    playButton.addEventHandler(MouseEvent.MOUSE_CLICKED, k->{
-                        System.out.println(k.getSource());
-                    });
-
-                    playButton.addEventFilter(MouseEvent.MOUSE_CLICKED, event->{
-
-
-                        System.out.println();
-                    });
-                    //button.setVisible(false);
                 }
                 playButton.setFont(Font.font("Bold", 13));
                 gridPane.add(playButton, i,j);
@@ -100,30 +90,26 @@ public class SchiffeversenkenController {
                         if (v.contains(shoot)){
                             schiffsName[0] = k;
                             v.remove(shoot);
+                            for (Node b: gridPane.getChildren()){
+                                if (element.equals(b)){
+                                    //gridPane.setStyle("-fx-background-color: red");
+                                    b.setStyle("-fx-background-color: red; -fx-text-fill: red");
+                                }
+
+                            }
                             System.out.println(v);
                             if (v.size() > 0){
                                 liste.getItems().add("Treffer: "+k);
-                                liste.scrollTo(liste.getItems().size());
-                                for (Node b: gridPane.getChildren()){
-                                    if (element.equals(b)){
-                                        //gridPane.setStyle("-fx-background-color: red");
-                                        b.setStyle("-fx-background-color: red; -fx-text-fill: red");
-                                    }
 
-                                }
+
                             } else{
                                 liste.getItems().add(k+" versenkt");
-                                liste.scrollTo(liste.getItems().size());
-                                for (Node b: gridPane.getChildren()){
-                                    if (element.equals(b)){
-                                        //gridPane.setStyle("-fx-background-color: red");
-                                        b.setStyle("-fx-background-color: red; -fx-text-fill: ");
-                                    }
 
-                                }
+
                             }
-
+                            liste.scrollTo(liste.getItems().size());
                         }
+
                     });
                     if (schiffeAufSpielfeldMap.containsKey(schiffsName[0])){
                         if (schiffeAufSpielfeldMap.get(schiffsName[0]).size() == 0){
