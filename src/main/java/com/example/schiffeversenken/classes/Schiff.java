@@ -52,10 +52,12 @@ public abstract class Schiff {
                     tempList.add(feld);
                 }
                 if (spieldfeld.containsAll(tempList)){
+                    hm.put(this.getName(), tempList);
                     spieldfeld.removeAll(tempList);
                     System.out.println(tempList + " Entfernt!");
+
                     run = false;
-                    tempList.clear();
+
                 } else {
                     ausrichtung = r.nextInt(11);
                     tempList.clear();
@@ -69,10 +71,12 @@ public abstract class Schiff {
                     tempList.add(feld);
                 }
                 if (spieldfeld.containsAll(tempList)){
+                    hm.put(this.getName(), tempList);
                     spieldfeld.removeAll(tempList);
                     System.out.println(tempList + " Entfernt!");
+
                     run = false;
-                    tempList.clear();
+
                 } else {
                     ausrichtung = r.nextInt(11);
                     tempList.clear();
@@ -80,8 +84,8 @@ public abstract class Schiff {
             }
         } while (run);
 
-        if (ausrichtung%2 == 0){
-            System.out.println(this.getName()+"Start Horizontal: " +starth);
+       /* if (ausrichtung%2 == 0){
+            System.out.println(this.getName()+" Start Horizontal: " +starth);
             for (int i = 0; i < this.getFelder(); i++){
                 String feld = Character.toString(startv) + (starth+i);
                 if (!spieldfeld.contains(feld)){
@@ -94,7 +98,7 @@ public abstract class Schiff {
 
             }
         } else {
-            System.out.println(this.getName()+"Start Vertikal: " +startv);
+            System.out.println(this.getName()+" Start Vertikal: " +startv);
             for (int i = 0; i < this.getFelder(); i++){
                 String feld = Character.toString(startv +i) + starth;
 
@@ -107,8 +111,8 @@ public abstract class Schiff {
 
 
             }
-        }
-        hm.put(this.getName(), al);
+        }*/
+        //hm.put(this.getName(), al);
         return hm;
     }
 
