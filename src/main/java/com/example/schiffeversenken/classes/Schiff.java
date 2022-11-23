@@ -47,11 +47,13 @@ public abstract class Schiff {
                 startv = r.nextInt(65, 76);
                 starth = r.nextInt(1, this.getFelder()+1);
                 ArrayList<String> tempList = new ArrayList<>();
-                for (int i = 0; i< this.getFelder()+1; i++){
+                for (int i = 0; i< this.getFelder(); i++){
                     String feld = Character.toString(startv) + (starth+i);
                     tempList.add(feld);
                 }
                 if (spieldfeld.containsAll(tempList)){
+                    spieldfeld.removeAll(tempList);
+                    System.out.println(tempList + " Entfernt!");
                     run = false;
                     tempList.clear();
                 } else {
@@ -62,17 +64,13 @@ public abstract class Schiff {
                 ArrayList<String> tempList = new ArrayList<>();
                 startv = r.nextInt(65, 76-this.getFelder());
                 starth = r.nextInt(1, 11);
-                for (int i = 0; i< this.getFelder()+1; i++){
-/*                    String feld = Character.toString(startv + i) + starth;
-                    if (!spieldfeld.contains(feld)){
-                        //ausrichtung = r.nextInt(1,11);
-                        break;
-                    }
-                    run = false;*/
+                for (int i = 0; i< this.getFelder(); i++){
                     String feld = Character.toString(startv) + (starth+i);
                     tempList.add(feld);
                 }
                 if (spieldfeld.containsAll(tempList)){
+                    spieldfeld.removeAll(tempList);
+                    System.out.println(tempList + " Entfernt!");
                     run = false;
                     tempList.clear();
                 } else {
@@ -86,11 +84,10 @@ public abstract class Schiff {
             System.out.println(this.getName()+"Start Horizontal: " +starth);
             for (int i = 0; i < this.getFelder(); i++){
                 String feld = Character.toString(startv) + (starth+i);
-                if (spieldfeld.contains(feld)){
+                if (!spieldfeld.contains(feld)){
                     al.add(feld);
-                    System.out.println(feld + " Entfernt!");
-                    spieldfeld.remove(feld);
                 } else {
+                    al.add(feld);
                     System.err.println("Logikfehler horizontal: "+feld);
                 }
 
@@ -101,11 +98,10 @@ public abstract class Schiff {
             for (int i = 0; i < this.getFelder(); i++){
                 String feld = Character.toString(startv +i) + starth;
 
-                if (spieldfeld.contains(feld)){
+                if (!spieldfeld.contains(feld)){
                     al.add(feld);
-                    System.out.println(feld + " Entfernt!");
-                    spieldfeld.remove(feld);
                 } else {
+                    al.add(feld);
                     System.err.println("Logikfehler Vertikal: "+feld);
                 }
 
