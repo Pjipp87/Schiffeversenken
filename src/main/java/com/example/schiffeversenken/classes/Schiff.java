@@ -38,63 +38,46 @@ public abstract class Schiff {
         Random r = new Random();
         int startv;
         int starth;
-/*        do {
-            startv = r.nextInt(65, 76);
-            starth = r.nextInt(1, this.getFelder()+1);
-
-        }while (besetzteFelder.contains(""+starth+startv));*/
 
         int ausrichtung = r.nextInt(1,11);
         boolean run = true;
-/*        if (ausrichtung%2==0){
-            do {
-                    startv = r.nextInt(65, 76);
-                    starth = r.nextInt(1, this.getFelder()+1);
 
-                    for (int i = 0; i< this.getFelder(); i++){
-                        String feld = Character.toString(startv) + (starth+i);
-                        if (!spieldfeld.contains(feld)){
-                            continue;
-                        }
-                        run = false;
-                    }
-            } while (run);
-        } else {
-            do {
-                startv = r.nextInt(65, 76-this.getFelder());
-                starth = r.nextInt(1, 11);
-                for (int i = 0; i< this.getFelder(); i++){
-                    String feld = Character.toString(startv + i) + starth;
-                    if (!spieldfeld.contains(feld)){
-                        continue;
-                    }
-                    run = false;
-                }
-            }while (run);
-        }*/
         do {
             if (ausrichtung%2==0){
                 startv = r.nextInt(65, 76);
                 starth = r.nextInt(1, this.getFelder()+1);
-
+                ArrayList<String> tempList = new ArrayList<>();
                 for (int i = 0; i< this.getFelder()+1; i++){
                     String feld = Character.toString(startv) + (starth+i);
-                    if (!spieldfeld.contains(feld)){
-                        //ausrichtung = r.nextInt(1,11);
-                        break;
-                    }
+                    tempList.add(feld);
+                }
+                if (spieldfeld.containsAll(tempList)){
                     run = false;
+                    tempList.clear();
+                } else {
+                    ausrichtung = r.nextInt(11);
+                    tempList.clear();
                 }
             } else {
+                ArrayList<String> tempList = new ArrayList<>();
                 startv = r.nextInt(65, 76-this.getFelder());
                 starth = r.nextInt(1, 11);
                 for (int i = 0; i< this.getFelder()+1; i++){
-                    String feld = Character.toString(startv + i) + starth;
+/*                    String feld = Character.toString(startv + i) + starth;
                     if (!spieldfeld.contains(feld)){
                         //ausrichtung = r.nextInt(1,11);
                         break;
                     }
+                    run = false;*/
+                    String feld = Character.toString(startv) + (starth+i);
+                    tempList.add(feld);
+                }
+                if (spieldfeld.containsAll(tempList)){
                     run = false;
+                    tempList.clear();
+                } else {
+                    ausrichtung = r.nextInt(11);
+                    tempList.clear();
                 }
             }
         } while (run);
@@ -103,7 +86,6 @@ public abstract class Schiff {
             System.out.println(this.getName()+"Start Horizontal: " +starth);
             for (int i = 0; i < this.getFelder(); i++){
                 String feld = Character.toString(startv) + (starth+i);
-
                 if (spieldfeld.contains(feld)){
                     al.add(feld);
                     System.out.println(feld + " Entfernt!");
