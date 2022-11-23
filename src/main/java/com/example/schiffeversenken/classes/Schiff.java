@@ -74,7 +74,6 @@ public abstract class Schiff {
                     hm.put(this.getName(), tempList);
                     spieldfeld.removeAll(tempList);
                     System.out.println(tempList + " Entfernt!");
-
                     run = false;
 
                 } else {

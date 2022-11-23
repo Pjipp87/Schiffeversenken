@@ -66,9 +66,9 @@ public class SchiffeversenkenController {
         schiffeAufSpielfeldMap.forEach((k,v)->{
             System.out.println(k+": "+v);
         });
-
+        System.out.println();
         System.out.println(Schiff.spieldfeld.size());
-
+        System.out.println("\nUsereingaben:");
 
 
         for (Node element: gridPane.getChildren()) {
