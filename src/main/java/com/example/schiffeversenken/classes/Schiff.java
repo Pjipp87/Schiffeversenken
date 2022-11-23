@@ -16,12 +16,13 @@ public abstract class Schiff {
 
     protected Schiff(int felder, String name){
         if (spieldfeld.size() == 0){
-            for (int i = 65; i <= 75; i++){
+            for (int i = 65; i <= 74; i++){
                 for (int j = 1; j <= 10; j++){
                     spieldfeld.add(Character.toString(i)+j);
                 }
             }
         }
+        System.out.println(spieldfeld);
         this.name = name;
         this.felder = felder;
         schiffsListe.add(this);
@@ -45,7 +46,7 @@ public abstract class Schiff {
 
         boolean run = true;
         do {
-            startv = r.nextInt(65, 76);
+            startv = r.nextInt(65, (74-this.getFelder()));
             starth = r.nextInt(1, this.getFelder()+1);
             if (startv%2==0){
                 for (int i = 0; i< this.getFelder(); i++){
