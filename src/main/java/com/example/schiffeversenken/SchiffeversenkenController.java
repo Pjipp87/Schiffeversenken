@@ -1,29 +1,28 @@
 package com.example.schiffeversenken;
 
+import com.example.schiffeversenken.classes.Kreuzer;
 import com.example.schiffeversenken.classes.Schlachtschiff;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
+import com.example.schiffeversenken.classes.Uboot;
+import com.example.schiffeversenken.classes.Zerstörer;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
-import java.io.InputStream;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicReference;
 
 
 public class SchiffeversenkenController {
    @FXML
     private GridPane gridPane = new GridPane();
 
+   public static ArrayList<String> schiffeAufSpielfeld = new ArrayList<>();
+    public static HashMap<String, ArrayList<String>> schiffeAufSpielfeldMap = new HashMap<>();
 
    @FXML
    private Label status;
@@ -54,12 +53,18 @@ public class SchiffeversenkenController {
         }
 
 
-        ArrayList<String> ar = new ArrayList<>();
-        ar.add("A1");
-        ar.add("A2");
-        ar.add("A3");
-        ar.add(new Schlachtschiff().setzeSchiff());
 
+        schiffeAufSpielfeldMap.putAll(new Schlachtschiff().setzeSchiff());
+        schiffeAufSpielfeldMap.putAll(new Kreuzer().setzeSchiff());
+        schiffeAufSpielfeldMap.putAll(new Kreuzer().setzeSchiff());
+        schiffeAufSpielfeldMap.putAll(new Zerstörer().setzeSchiff());
+        schiffeAufSpielfeldMap.putAll(new Zerstörer().setzeSchiff());
+        schiffeAufSpielfeldMap.putAll(new Zerstörer().setzeSchiff());
+        schiffeAufSpielfeldMap.putAll(new Uboot().setzeSchiff());
+        schiffeAufSpielfeldMap.putAll(new Uboot().setzeSchiff());
+        schiffeAufSpielfeldMap.putAll(new Uboot().setzeSchiff());
+        schiffeAufSpielfeldMap.putAll(new Uboot().setzeSchiff());
+        System.out.println(schiffeAufSpielfeldMap);
 
 
 
@@ -67,29 +72,38 @@ public class SchiffeversenkenController {
             element.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent mouseEvent) {
-                    int row = GridPane.getColumnIndex(element);
-                    int column = GridPane.getRowIndex(element);
+                    int column = GridPane.getColumnIndex(element);
+                    int row = GridPane.getRowIndex(element);
                     String shoot = Character.toString(row + 64) + String.valueOf(column);
                     System.out.println(shoot);
+                    final String[] schiffsName = {"Null"};
 
-                    if (ar.contains(shoot)){
-                        if (ar.size() == 1){
-                            liste.getItems().add("Schiff versenkt");
+                    schiffeAufSpielfeldMap.forEach((k,v)->{
+                        if (v.contains(shoot)){
+                            schiffsName[0] = k;
+                            v.remove(shoot);
+                            System.out.println(v);
+                            if (v.size() > 0){
+                                liste.getItems().add("Treffer: "+k);
+                            } else{
+                                liste.getItems().add(k+" versenkt");
 
-                        } else{
-                            liste.getItems().add("Treffer");
-                            InputStream inputStream = getClass().getClassLoader().getResourceAsStream("/sound/ex.mp3");
 
+                            }
 
                         }
-
-                        ar.remove(shoot);
-
+                    });
+                    if (schiffeAufSpielfeldMap.containsKey(schiffsName[0])){
+                        if (schiffeAufSpielfeldMap.get(schiffsName[0]).size() == 0){
+                            schiffeAufSpielfeldMap.remove(schiffsName[0]);
+                            if (schiffeAufSpielfeldMap.isEmpty()){
+                                liste.getItems().add("Spiel beendet!");
+                            }
+                        }
                     }
 
+                    ;
 
-                    //System.out.println("Spalte: "+ (GridPane.getColumnIndex(element)));
-                    //System.out.println("Reihe: "+(Character.toString(GridPane.getRowIndex(element)+64)));
                 }
             });
         }
