@@ -2,13 +2,17 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.schiffeversenken.SchiffeversenkenController">
-    <GridPane fx:id="gridPane" gridLinesVisible="true" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: lightblue;">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.schiffeversenken.SchiffeversenkenController">
+    <GridPane fx:id="gridPane" gridLinesVisible="true" layoutY="72.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: lightblue;">
       <columnConstraints>
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -37,6 +41,53 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
       </rowConstraints>
     </GridPane>
-   <Label fx:id="status" layoutX="412.0" layoutY="48.0" prefHeight="17.0" prefWidth="179.0" />
-   <ListView fx:id="liste" layoutX="400.0" layoutY="83.0" prefHeight="200.0" prefWidth="200.0" />
+   <ListView fx:id="liste" layoutX="400.0" layoutY="72.0" prefHeight="400.0" prefWidth="200.0" />
+   <GridPane fx:id="gridPane1" gridLinesVisible="true" layoutX="600.0" layoutY="72.0" prefHeight="400.0" prefWidth="400.0" style="-fx-background-color: lightblue;">
+      <columnConstraints>
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+   </GridPane>
+   <Label layoutX="139.0" layoutY="14.0" text="Gegner">
+      <font>
+         <Font name="System Bold" size="36.0" />
+      </font>
+   </Label>
+   <Label layoutX="742.0" layoutY="14.0" text="Spieler">
+      <font>
+         <Font name="System Bold" size="36.0" />
+      </font>
+   </Label>
+   <MenuButton layoutX="834.0" layoutY="472.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="166.0" text="Schiff wählen">
+     <items>
+       <MenuItem fx:id="schlachtschiff" mnemonicParsing="false" text="Schlachtschiff" />
+       <MenuItem fx:id="Kreuzer" mnemonicParsing="false" text="Kreuzer" />
+         <MenuItem fx:id="zerstörer" mnemonicParsing="false" text="Zerstörer" />
+         <MenuItem fx:id="uboot" mnemonicParsing="false" text="U-Boot" />
+     </items>
+   </MenuButton>
+   <RadioButton layoutX="600.0" layoutY="497.0" mnemonicParsing="false" text="Horizontal" />
+   <RadioButton layoutX="600.0" layoutY="514.0" mnemonicParsing="false" text="RadioButton" />
 </Pane>

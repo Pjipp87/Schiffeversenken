@@ -13,7 +13,7 @@ public class SchiffeversenkenApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(SchiffeversenkenApplication.class.getResource("game-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Scene scene = new Scene(fxmlLoader.load(), 1000, 600);
         stage.setTitle("Schiffe versenken");
         stage.getIcons().add(new Image(Objects.requireNonNull(SchiffeversenkenApplication.class.getResourceAsStream("icon/newIcon.jpeg"))));
         stage.setScene(scene);
