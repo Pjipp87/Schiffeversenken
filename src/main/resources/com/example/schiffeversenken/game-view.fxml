@@ -89,5 +89,5 @@
      </items>
    </MenuButton>
    <RadioButton layoutX="600.0" layoutY="497.0" mnemonicParsing="false" text="Horizontal" />
-   <RadioButton layoutX="600.0" layoutY="514.0" mnemonicParsing="false" text="RadioButton" />
+   <RadioButton layoutX="600.0" layoutY="514.0" mnemonicParsing="false" text="Vertikal" />
 </Pane>
