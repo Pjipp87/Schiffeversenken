@@ -11,7 +11,6 @@ import javafx.scene.text.Font;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.atomic.AtomicReference;
 
 
 public class SchiffeversenkenController {
@@ -72,7 +71,7 @@ public class SchiffeversenkenController {
             System.out.println(k+": "+v);
         });
         System.out.println();
-        System.out.println(Schiff.spieldfeld.size());
+        System.out.println(SchiffCPU.spieldfeldCPU.size());
         System.out.println("\nUsereingaben:");
 
 

@@ -1,10 +1,10 @@
 package com.example.schiffeversenken.classes;
 
-public class Kreuzer extends Schiff{
+public class Kreuzer extends SchiffCPU {
 
 
 
     public Kreuzer() {
-        super(4, "Kreuzer"+Schiff.counter);
+        super(4, "Kreuzer"+ SchiffCPU.counter);
     }
 }

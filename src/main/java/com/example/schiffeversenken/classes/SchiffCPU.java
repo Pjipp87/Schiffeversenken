@@ -4,27 +4,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-public abstract class Schiff {
+public abstract class SchiffCPU {
     protected static int counter;
     private int felder;
     private String name;
-    private static ArrayList<Schiff> schiffsListe = new ArrayList<>();
-    private static ArrayList<String> besetzteFelder = new ArrayList<>();
+    private static ArrayList<SchiffCPU> schiffsListeCPU = new ArrayList<>();
+ 
 
-    public static ArrayList<String> spieldfeld = new ArrayList<>();
+    public static ArrayList<String> spieldfeldCPU = new ArrayList<>();
 
-    protected Schiff(int felder, String name){
-        if (spieldfeld.size() == 0){
+    protected SchiffCPU(int felder, String name){
+        if (spieldfeldCPU.size() == 0){
             for (int i = 65; i <= 74; i++){
                 for (int j = 1; j <= 10; j++){
-                    spieldfeld.add(Character.toString(i)+j);
+                    spieldfeldCPU.add(Character.toString(i)+j);
                 }
             }
-            System.out.println(spieldfeld.size());
+            System.out.println(spieldfeldCPU.size());
         }
         this.name = name;
         this.felder = felder;
-        schiffsListe.add(this);
+        schiffsListeCPU.add(this);
         ++counter;
 
     }
@@ -50,9 +50,9 @@ public abstract class Schiff {
                     String feld = Character.toString(startv) + (starth+i);
                     tempList.add(feld);
                 }
-                if (spieldfeld.containsAll(tempList)){
+                if (spieldfeldCPU.containsAll(tempList)){
                     hm.put(this.getName(), tempList);
-                    spieldfeld.removeAll(tempList);
+                    spieldfeldCPU.removeAll(tempList);
                     System.out.println(tempList + " Entfernt!");
 
                     run = false;
@@ -69,10 +69,10 @@ public abstract class Schiff {
                     String feld = Character.toString(startv+i) + (starth);
                     tempList.add(feld);
                 }
-                if (spieldfeld.containsAll(tempList)){
+                if (spieldfeldCPU.containsAll(tempList)){
                     hm.put(this.getName(), tempList);
                     System.out.println(tempList);
-                    spieldfeld.removeAll(tempList);
+                    spieldfeldCPU.removeAll(tempList);
                     System.out.println(tempList + " Entfernt!");
                     run = false;
 
